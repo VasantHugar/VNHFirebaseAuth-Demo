@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 
+import Firebase
+import GoogleSignIn
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Use Firebase library to configure APIs
+        configureFirebase()
+        configureGoogleSignin()
+        
         return true
     }
 
@@ -88,6 +96,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
 
+
+extension AppDelegate {
+    
+    func configureFirebase() {
+        // Use Firebase library to configure APIs
+         FirebaseAuthModel.configure
+    }
+    
+    func configureGoogleSignin() {
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+    }
+}
+
+extension AppDelegate { // User Defined
+    
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+        -> Bool {
+            return GIDSignIn.sharedInstance().handle(url,
+                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                     annotation: [:])
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url,
+                                                 sourceApplication: sourceApplication,
+                                                 annotation: annotation)
+        
+    }
+}
