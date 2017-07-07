@@ -19,7 +19,7 @@
         <scene sceneID="7ON-AQ-K5V">
             <objects>
                 <navigationController id="GqQ-S5-qIg" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="LIG-yw-9Gt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="LIG-yw-9Gt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -31,7 +31,26 @@
             </objects>
             <point key="canvasLocation" x="722" y="-1322"/>
         </scene>
-        <!--Google Signin View Controller-->
+        <!--Facebook Login-->
+        <scene sceneID="V8i-JT-E2n">
+            <objects>
+                <viewController storyboardIdentifier="FBLoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZAh-L6-Io7" customClass="FBLoginViewController" customModule="Firebase_Auth" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MHx-QJ-Ktn"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bgk-1r-HVd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aBu-JY-edo">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Facebook Login" id="59v-Ed-FHY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WOL-Js-CNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1447" y="-2067"/>
+        </scene>
+        <!--Google Signin-->
         <scene sceneID="RPM-5U-5ro">
             <objects>
                 <viewController storyboardIdentifier="GoogleSigninViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hd9-Fn-iVy" customClass="GoogleSigninViewController" customModule="Firebase_Auth" customModuleProvider="target" sceneMemberID="viewController">
@@ -109,7 +128,7 @@
                             <constraint firstItem="iQq-cV-dI4" firstAttribute="centerX" secondItem="ZYd-8S-gKh" secondAttribute="centerX" id="zr5-KC-7E5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="nuY-kH-84x"/>
+                    <navigationItem key="navigationItem" title="Google Signin" id="b9t-MG-lgZ"/>
                     <connections>
                         <outlet property="activityIndicator" destination="OLb-Kl-bzt" id="Poo-5A-pDP"/>
                         <outlet property="signInButton" destination="YIE-2p-eEs" id="LJc-b8-LFe"/>
@@ -120,7 +139,7 @@
             </objects>
             <point key="canvasLocation" x="1448" y="-1321"/>
         </scene>
-        <!--Firebase Auth View Controller-->
+        <!--Signin-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FirebaseAuthViewController" customModule="Firebase_Auth" customModuleProvider="target" sceneMemberID="viewController">
@@ -176,7 +195,7 @@
                             <constraint firstItem="tT1-DL-zoC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="w0D-hw-A25"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="tb8-0V-356"/>
+                    <navigationItem key="navigationItem" title="Signin" id="Ufo-Eh-byE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -187,7 +206,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F8P-MH-Tfm" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="BIQ-Ud-WuA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="BIQ-Ud-WuA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -199,6 +218,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQi-ee-q28" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="333.60000000000002" y="-631.0344827586207"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="195-KZ-bQw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3cq-6N-fDb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jQR-3A-RF3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZAh-L6-Io7" kind="relationship" relationship="rootViewController" id="hcs-oB-g1J"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZuR-ue-Jmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="721" y="-2066"/>
         </scene>
     </scenes>
 </document>

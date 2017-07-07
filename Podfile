@@ -2,11 +2,14 @@
 # platform :ios, '9.0'
 
 target 'Firebase Auth' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for Firebase Auth
-  pod 'Firebase/Auth'
-  pod 'GoogleSignIn'
-
+    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+    use_frameworks!
+    
+    # Pods for Firebase Auth
+    pod 'Firebase/Auth'
+    pod 'GoogleSignIn'
+    pod 'FacebookCore'
+    pod 'FacebookLogin'
+    #pod 'FacebookShare'
+    
 end

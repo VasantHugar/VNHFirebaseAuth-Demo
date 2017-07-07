@@ -41,12 +41,10 @@ class GoogleSigninViewController: UIViewController {
     
     @IBAction func signinButtonAction(_ sender: Any) {
         activityIndicator.startAnimating()
-//        GIDSignIn.sharedInstance().signIn()
         signinModel.signIn()
     }
     
     @IBAction func signoutButtonAction(_ sender: Any) {
-//        GIDSignIn.sharedInstance().signOut()
         signinModel.signOut()
     }
     

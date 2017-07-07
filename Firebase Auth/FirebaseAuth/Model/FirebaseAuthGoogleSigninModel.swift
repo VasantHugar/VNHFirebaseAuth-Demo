@@ -16,7 +16,8 @@ class FirebaseAuthGoogleSigninModel: NSObject {
     /// Call This from AppDelegate
     /// Then, in the application:didFinishLaunchingWithOptions: method, initialize the FirebaseApp object:
     static var configure: Void {
-        FirebaseAuthConfigure.configure()
+        //FirebaseAuthConfigure.configure()
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
     }
     
     private static var obj: FirebaseAuthGoogleSigninModel?

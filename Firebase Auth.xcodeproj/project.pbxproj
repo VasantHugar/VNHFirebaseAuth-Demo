@@ -19,6 +19,8 @@
 		6BFC1E671F0E4BE40013562B /* FirebaseAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFC1E631F0E4BE40013562B /* FirebaseAuthViewController.swift */; };
 		6BFC1E691F0F61770013562B /* FirebaseAuthGoogleSigninModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFC1E681F0F61770013562B /* FirebaseAuthGoogleSigninModel.swift */; };
 		6BFC1E6B1F0F6B100013562B /* GoogleSigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFC1E6A1F0F6B100013562B /* GoogleSigninViewController.swift */; };
+		6BFC1E6D1F0FC93E0013562B /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFC1E6C1F0FC93E0013562B /* FBLoginViewController.swift */; };
+		6BFC1E6F1F0FC9F90013562B /* FirebaseAuthFBLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFC1E6E1F0FC9F90013562B /* FirebaseAuthFBLogin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		6BFC1E631F0E4BE40013562B /* FirebaseAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthViewController.swift; sourceTree = "<group>"; };
 		6BFC1E681F0F61770013562B /* FirebaseAuthGoogleSigninModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthGoogleSigninModel.swift; sourceTree = "<group>"; };
 		6BFC1E6A1F0F6B100013562B /* GoogleSigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleSigninViewController.swift; sourceTree = "<group>"; };
+		6BFC1E6C1F0FC93E0013562B /* FBLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
+		6BFC1E6E1F0FC9F90013562B /* FirebaseAuthFBLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthFBLogin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 			children = (
 				6BFC1E5D1F0E4BE40013562B /* FirebaseAuthModel.swift */,
 				6BFC1E681F0F61770013562B /* FirebaseAuthGoogleSigninModel.swift */,
+				6BFC1E6E1F0FC9F90013562B /* FirebaseAuthFBLogin.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			children = (
 				6BFC1E631F0E4BE40013562B /* FirebaseAuthViewController.swift */,
 				6BFC1E6A1F0F6B100013562B /* GoogleSigninViewController.swift */,
+				6BFC1E6C1F0FC93E0013562B /* FBLoginViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -276,7 +282,9 @@
 				6BFC1E671F0E4BE40013562B /* FirebaseAuthViewController.swift in Sources */,
 				6BFC1E491F0E0CDC0013562B /* Firebase_Auth.xcdatamodeld in Sources */,
 				6BFC1E641F0E4BE40013562B /* FirebaseAuthModel.swift in Sources */,
+				6BFC1E6F1F0FC9F90013562B /* FirebaseAuthFBLogin.swift in Sources */,
 				6BFC1E411F0E0CDC0013562B /* AppDelegate.swift in Sources */,
+				6BFC1E6D1F0FC93E0013562B /* FBLoginViewController.swift in Sources */,
 				6BFC1E691F0F61770013562B /* FirebaseAuthGoogleSigninModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

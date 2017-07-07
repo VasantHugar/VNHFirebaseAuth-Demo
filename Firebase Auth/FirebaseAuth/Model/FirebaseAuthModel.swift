@@ -275,5 +275,4 @@ class FirebaseAuthConfigure: NSObject {
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
     }
-    
 }
