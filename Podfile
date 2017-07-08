@@ -10,6 +10,6 @@ target 'Firebase Auth' do
     pod 'GoogleSignIn'
     pod 'FacebookCore'
     pod 'FacebookLogin'
-    #pod 'FacebookShare'
+    pod 'TwitterKit'
     
 end

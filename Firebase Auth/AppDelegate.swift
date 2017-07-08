@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Firebase Auth
 //
-//  Created by 3Embed on 06/07/17.
+//  Created by Vasant Hugar on 06/07/17.
 //  Copyright © 2017 Rahul Sharma. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ import CoreData
 import Firebase
 import GoogleSignIn
 import FacebookCore
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -62,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Core Data stack
     
+    @available(iOS 10.0, *)
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -92,17 +94,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data Saving support
     
     func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        if #available(iOS 10.0, *) {
+            let context = persistentContainer.viewContext
+            
+            if context.hasChanges {
+                do {
+                    try context.save()
+                } catch {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    let nserror = error as NSError
+                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }
             }
+            
+        } else {
+            // Fallback on earlier versions
         }
+        
     }
 }
 
@@ -132,7 +141,9 @@ extension AppDelegate { // User Defined
             
             let facebookDidHandle = SDKApplicationDelegate.shared.application(application, open: url, options: options)
             
-            return googleDidHandle || facebookDidHandle
+            let twitterDidHandle = Twitter.sharedInstance().application(application, open: url, options: options)
+            
+            return googleDidHandle || facebookDidHandle || twitterDidHandle
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {

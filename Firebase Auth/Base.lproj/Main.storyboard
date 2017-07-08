@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GqQ-S5-qIg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="F8P-MH-Tfm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,27 +11,10 @@
     <customFonts key="customFonts">
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
-            <string>HelveticaNeue-Medium</string>
         </array>
     </customFonts>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="7ON-AQ-K5V">
-            <objects>
-                <navigationController id="GqQ-S5-qIg" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="LIG-yw-9Gt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="hd9-Fn-iVy" kind="relationship" relationship="rootViewController" id="8fx-nM-Shm"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gh2-IO-EbJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="722" y="-1322"/>
-        </scene>
-        <!--Facebook Login-->
+        <!--Delegate-->
         <scene sceneID="V8i-JT-E2n">
             <objects>
                 <viewController storyboardIdentifier="FBLoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZAh-L6-Io7" customClass="FBLoginViewController" customModule="Firebase_Auth" customModuleProvider="target" sceneMemberID="viewController">
@@ -42,13 +25,33 @@
                     <view key="view" contentMode="scaleToFill" id="aBu-JY-edo">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Uf-km-Eb6" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="30" y="282" width="315" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Hg7-j2-FCG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.28627450980000002" green="0.61960784310000006" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <outlet property="delegate" destination="ZAh-L6-Io7" id="dz1-7X-zg0"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Uf-km-Eb6" firstAttribute="centerX" secondItem="aBu-JY-edo" secondAttribute="centerX" id="H8f-FE-vcx"/>
+                            <constraint firstItem="7Uf-km-Eb6" firstAttribute="centerY" secondItem="aBu-JY-edo" secondAttribute="centerY" id="QSI-ma-6Tv"/>
+                            <constraint firstItem="7Uf-km-Eb6" firstAttribute="leading" secondItem="aBu-JY-edo" secondAttribute="leading" constant="30" id="vbw-d7-r5r"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Facebook Login" id="59v-Ed-FHY"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WOL-Js-CNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1447" y="-2067"/>
+            <point key="canvasLocation" x="2654" y="-1947"/>
         </scene>
         <!--Google Signin-->
         <scene sceneID="RPM-5U-5ro">
@@ -137,7 +140,70 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kU5-rq-XVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1448" y="-1321"/>
+            <point key="canvasLocation" x="2654" y="-1164"/>
+        </scene>
+        <!--Twitter-->
+        <scene sceneID="lpg-aq-swR">
+            <objects>
+                <viewController storyboardIdentifier="TwitterLoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EpJ-Z5-sIu" customClass="TwitterLoginViewController" customModule="Firebase_Auth" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pFq-Lj-KJW"/>
+                        <viewControllerLayoutGuide type="bottom" id="sJT-uw-WCj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FKy-Au-RJX">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZc-ad-Z94">
+                                <rect key="frame" x="20" y="352" width="335" height="40"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title="Custom Login Button">
+                                    <color key="titleColor" red="0.28627450980000002" green="0.61960784310000006" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonAction:" destination="EpJ-Z5-sIu" eventType="touchUpInside" id="OI3-T1-2NJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZ7-EX-Aid" customClass="TWTRLogInButton">
+                                <rect key="frame" x="30" y="282" width="315" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="jbH-he-zl5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.28627450980000002" green="0.61960784310000006" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonAction:" destination="EpJ-Z5-sIu" eventType="touchUpInside" id="4Zk-nI-90W"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oZc-ad-Z94" firstAttribute="height" secondItem="eZ7-EX-Aid" secondAttribute="height" id="0TA-cz-Qiv"/>
+                            <constraint firstItem="eZ7-EX-Aid" firstAttribute="centerX" secondItem="FKy-Au-RJX" secondAttribute="centerX" id="2jP-2b-ejo"/>
+                            <constraint firstItem="eZ7-EX-Aid" firstAttribute="leading" secondItem="FKy-Au-RJX" secondAttribute="leading" constant="30" id="JgC-p0-QXb"/>
+                            <constraint firstItem="oZc-ad-Z94" firstAttribute="top" secondItem="eZ7-EX-Aid" secondAttribute="bottom" constant="30" id="LKx-qo-Lq2"/>
+                            <constraint firstItem="eZ7-EX-Aid" firstAttribute="centerY" secondItem="FKy-Au-RJX" secondAttribute="centerY" id="Vos-NE-tIK"/>
+                            <constraint firstItem="oZc-ad-Z94" firstAttribute="leading" secondItem="FKy-Au-RJX" secondAttribute="leading" constant="20" id="sqY-uf-LAE"/>
+                            <constraint firstItem="oZc-ad-Z94" firstAttribute="centerX" secondItem="FKy-Au-RJX" secondAttribute="centerX" id="tjZ-wz-S9V"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Twitter" id="6b9-WL-SgM">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="VDi-xo-ZRo">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uBD-F7-WY3">
+                                <rect key="frame" x="16" y="0.0" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="loginButton" destination="eZ7-EX-Aid" id="9zJ-8s-J7I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qws-0f-eMY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2654" y="-355"/>
         </scene>
         <!--Signin-->
         <scene sceneID="tne-QT-ifu">
@@ -162,9 +228,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwG-ai-lYM">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwG-ai-lYM">
                                                     <rect key="frame" x="20" y="0.0" width="335" height="50"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -196,10 +262,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Signin" id="Ufo-Eh-byE"/>
+                    <connections>
+                        <segue destination="ZAh-L6-Io7" kind="show" identifier="facebookSegue" id="cqr-Jl-Up5"/>
+                        <segue destination="hd9-Fn-iVy" kind="show" identifier="googleSegue" id="a4M-Mu-AUe"/>
+                        <segue destination="EpJ-Z5-sIu" kind="show" identifier="twitterSegue" id="srC-yU-hzc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1152.8" y="-631.0344827586207"/>
+            <point key="canvasLocation" x="1116" y="-631"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dxZ-fw-pkO">
@@ -218,24 +289,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQi-ee-q28" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="333.60000000000002" y="-631.0344827586207"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="195-KZ-bQw">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3cq-6N-fDb" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jQR-3A-RF3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ZAh-L6-Io7" kind="relationship" relationship="rootViewController" id="hcs-oB-g1J"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZuR-ue-Jmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="721" y="-2066"/>
         </scene>
     </scenes>
 </document>

@@ -36,6 +36,12 @@
 				<string>fb246462179190449</string>
 			</array>
 		</dict>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>twitterkit-inMB6fJB9QaEhD4dXuHkzCZBX</string>
+            </array>
+        </dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -66,6 +72,8 @@
         <string>fb-messenger-api</string>
         <string>fbauth2</string>
         <string>fbshareextension</string>
+        <string>twitter</string>
+        <string>twitterauth</string>
     </array>
 </dict>
 </plist>

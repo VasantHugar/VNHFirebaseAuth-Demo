@@ -41,13 +41,15 @@ class FirebaseAuthModel: NSObject {
                 // if you have one. Use getTokenWithCompletion:completion: instead.
                 
                 let uid = user.uid
-                let email = user.email
+                let name: String = user.displayName ?? ""
+                let email: String = user.email ?? ""
                 let photoURL = user.photoURL
                 
                 print("\n**********************************************************")
                 print("User uid: \(uid)")
-                print("User email: \(email!)")
-                print("User photoURL: \(photoURL)")
+                print("User name: \(name)")
+                print("User email: \(email)")
+                print("User photoURL: \(photoURL?.description)")
                 print("**********************************************************\n")
             }
         }
@@ -79,13 +81,15 @@ class FirebaseAuthModel: NSObject {
                 // if you have one. Use getTokenWithCompletion:completion: instead.
                 
                 let uid = user.uid
-                let email = user.email
+                let name: String = user.displayName ?? ""
+                let email: String = user.email ?? ""
                 let photoURL = user.photoURL
                 
                 print("\n**********************************************************")
                 print("User uid: \(uid)")
-                print("User email: \(email!)")
-                print("User photoURL: \(photoURL)")
+                print("User name: \(name)")
+                print("User email: \(email)")
+                print("User photoURL: \(photoURL?.description)")
                 print("**********************************************************\n")
             }
         }
@@ -109,13 +113,15 @@ class FirebaseAuthModel: NSObject {
                 // if you have one. Use getTokenWithCompletion:completion: instead.
                 
                 let uid = user.uid
-                let email = user.email
+                let name: String = user.displayName ?? ""
+                let email: String = user.email ?? ""
                 let photoURL = user.photoURL
                 
                 print("\n**********************************************************")
                 print("User uid: \(uid)")
-                print("User email: \(email!)")
-                print("User photoURL: \(photoURL)")
+                print("User name: \(name)")
+                print("User email: \(email)")
+                print("User photoURL: \(photoURL?.description)")
                 print("**********************************************************\n")
             }
         }

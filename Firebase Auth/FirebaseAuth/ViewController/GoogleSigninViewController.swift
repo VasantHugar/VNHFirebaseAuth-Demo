@@ -2,7 +2,7 @@
 //  GoogleSigninViewController.swift
 //  Firebase Auth
 //
-//  Created by 3Embed on 07/07/17.
+//  Created by Vasant Hugar on 07/07/17.
 //  Copyright © 2017 Rahul Sharma. All rights reserved.
 //
 
@@ -48,7 +48,6 @@ class GoogleSigninViewController: UIViewController {
         signinModel.signOut()
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -70,43 +69,3 @@ extension GoogleSigninViewController: GIDSignInUIDelegate {
         present(viewController, animated: true, completion: nil)
     }
 }
-
-//extension GoogleSigninViewController: GIDSignInDelegate {
-//    
-//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-//        // ...
-//        if let error = error {
-//            // ...
-//            print("SignIn Error : \(error.localizedDescription)")
-//            activityIndicator.stopAnimating()
-//            return
-//        }
-//        
-//        guard let authentication = user.authentication else { return }
-//        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-//                                                       accessToken: authentication.accessToken)
-//        // ...
-//        
-//        let name = user.profile.name
-//        let email = user.profile.email
-//        
-//        print("\n**********************************************************")
-//        print("User name: \(name!)")
-//        print("User email: \(email!)")
-//        print("Credential provider: \(credential.provider)")
-//        print("**********************************************************\n")
-//        
-//        self.user.text = "Name: " + name! + "\n" + "Email: " + email!
-//        
-//        activityIndicator.stopAnimating()
-//        
-//    }
-//    
-//    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-//        // Perform any operations when the user disconnects from app here.
-//        // ...
-//        print("SignIn Error : \(error.localizedDescription)")
-//        
-//        activityIndicator.stopAnimating()
-//    }
-//}

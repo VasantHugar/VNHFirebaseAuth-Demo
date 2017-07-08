@@ -2,7 +2,7 @@
 //  FirebaseAuthFBLogin.swift
 //  Firebase Auth
 //
-//  Created by 3Embed on 07/07/17.
+//  Created by Vasant Hugar on 07/07/17.
 //  Copyright © 2017 Rahul Sharma. All rights reserved.
 //
 

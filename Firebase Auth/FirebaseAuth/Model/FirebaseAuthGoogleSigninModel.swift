@@ -65,17 +65,25 @@ extension FirebaseAuthGoogleSigninModel: GIDSignInDelegate {
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
-        // ...
-        
-        let name = user.profile.name
-        let email = user.profile.email
-        
-        print("\n**********************************************************")
-        print("User name: \(name!)")
-        print("User email: \(email!)")
-        print("Credential provider: \(credential.provider)")
-        print("**********************************************************\n")
-        
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if let error = error {
+                // ...
+                print("\n\nFB SignIn Error : \(error.localizedDescription)\n\n")
+                return
+            }
+            // User is signed in
+            // ...
+            let uid = user?.uid
+            let name = user?.displayName
+            let email = user?.providerID
+            
+            print("\n**********************************************************")
+            print("User id: \(uid!)")
+            print("User name: \(name!)")
+            print("User email: \(email!)")
+            print("Credential provider: \(credential.provider)")
+            print("**********************************************************\n")
+        }
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {

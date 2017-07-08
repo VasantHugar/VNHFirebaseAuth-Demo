@@ -2,11 +2,21 @@
 //  FirebaseAuthViewController.swift
 //  Firebase Auth
 //
-//  Created by 3Embed on 06/07/17.
+//  Created by Vasant Hugar on 06/07/17.
 //  Copyright © 2017 Rahul Sharma. All rights reserved.
 //
 
 import UIKit
+import Firebase
+
+enum FirebaseAuthType: Int {
+    case email = 0
+    case google = 1
+    case facebook = 2
+    case twitter = 3
+    case github = 4
+    case anonymous = 5
+}
 
 enum FirebaseActionType: Int {
     case createUser = 0
@@ -35,7 +45,7 @@ class FirebaseAuthViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       firebase.addChangeListener()
+        firebase.addChangeListener()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,155 +82,165 @@ class FirebaseAuthViewController: UIViewController {
             
         }
     }
-    
-    
-    /*
-    func createUser(email: String, password: String) {
-        
-        FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
-            
-            // ...
-            if let user = user {
-                // The user's ID, unique to the Firebase project.
-                // Do NOT use this value to authenticate with your backend server,
-                // if you have one. Use getTokenWithCompletion:completion: instead.
-                let uid = user.uid
-                let email = user.email
-                let photoURL = user.photoURL
-                // ...
-            }
-        }
-        
-    }
-    
-    func signin(email: String, password: String) {
-        
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-            // ...
-            if let user = user {
-                // The user's ID, unique to the Firebase project.
-                // Do NOT use this value to authenticate with your backend server,
-                // if you have one. Use getTokenWithCompletion:completion: instead.
-                let uid = user.uid
-                let email = user.email
-                let photoURL = user.photoURL
-                // ...
-            }
-        }
-    }
-    
-    func createProfileChange(displayName: String, photoURL: String) {
-        
-        let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-        
-        changeRequest?.displayName = "Vasant Hugar"
-        
-        changeRequest?.photoURL = URL(string: "https://www.google.co.in/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwivlsawkfTUAhXHLI8KHb-TAvUQjRwIBw&url=http%3A%2F%2Fappleiphonenew.com%2Fapple-developer%2F&psig=AFQjCNE6IV3_UWy9SWNGaQqKiCJ8uYYLrQ&ust=1499412605426053")
-        changeRequest?.commitChanges { (error) in
-            // ...
-        }
-    }
-    
-    func updateEmail(email: String) {
-        FIRAuth.auth()?.currentUser?.updateEmail(email) { (error) in
-            // ...
-        }
-    }
-    
-    func sendEmailVerification() {
-        FIRAuth.auth()?.currentUser?.sendEmailVerification { (error) in
-            // ...
-        }
-    }
-    
-    func updatePassword(password: String) {
-        
-        FIRAuth.auth()?.currentUser?.updatePassword(password) { (error) in
-            // ...
-        }
-    }
-    
-    func sendPasswordReset(email: String) {
-        
-        FIRAuth.auth()?.sendPasswordReset(withEmail: email) { (error) in
-            // ...
-        }
-    }
-    
-    func delete() {
-        
-        let user = FIRAuth.auth()?.currentUser
-        
-        user?.delete { error in
-            
-            if error != nil {
-                // An error happened.
-            }
-            else {
-                // Account deleted.
-            }
-        }
-    }
- */
 }
 
 extension FirebaseAuthViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 6
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        
+        switch FirebaseAuthType(rawValue: section)! {
+        case .google, .facebook, .twitter, .github, .anonymous:
+            return 1
+            
+        default:
+            return 8
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FirebaseAuthTableViewCell") as! FirebaseAuthTableViewCell
-        
-        cell.action.text = actions(type: FirebaseActionType(rawValue: indexPath.row)!).title
-        
-        return cell
+        switch FirebaseAuthType(rawValue: indexPath.section)! {
+        case .google:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FirebaseAuthTableViewCell") as! FirebaseAuthTableViewCell
+            
+            cell.action.text = "Google Signin"
+            return cell
+            
+        case .facebook:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FirebaseAuthTableViewCell") as! FirebaseAuthTableViewCell
+            
+            cell.action.text = "Login with Facebook"
+            return cell
+            
+        case .twitter:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FirebaseAuthTableViewCell") as! FirebaseAuthTableViewCell
+            
+            cell.action.text = "Login with Twitter"
+            return cell
+            
+        case .github:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FirebaseAuthTableViewCell") as! FirebaseAuthTableViewCell
+            
+            cell.action.text = "Login with Github"
+            return cell
+            
+        case .anonymous:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FirebaseAuthTableViewCell") as! FirebaseAuthTableViewCell
+            
+            cell.action.text = "Anonymous"
+            return cell
+            
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FirebaseAuthTableViewCell") as! FirebaseAuthTableViewCell
+            
+            cell.action.text = actions(type: FirebaseActionType(rawValue: indexPath.row)!).title
+            return cell
+        }
     }
 }
 
 extension FirebaseAuthViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        switch FirebaseAuthType(rawValue: section)! {
+        case .email:
+            return "Email"
+            
+        case .google:
+            return "Google"
+            
+        case .facebook:
+            return "Facebook"
+            
+        case .twitter:
+            return "Twitter"
+            
+        case .github:
+            return "GitHub"
+            
+        case .anonymous:
+            return "Anonymous"
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        switch FirebaseActionType(rawValue: indexPath.row)! {
-        case .createUser:
-            firebase.createUser(email: "hugar.vasant@gmail.com", password: "3Embed")
+        switch FirebaseAuthType(rawValue: indexPath.section)! {
+        case .email:
+            
+            switch FirebaseActionType(rawValue: indexPath.row)! {
+            case .createUser:
+                firebase.createUser(email: "hugar.vasant@gmail.com", password: "3Embed")
+                break
+                
+            case .signin:
+                firebase.signin(email: "hugar.vasant@gmail.com", password: "3Embed")
+                break
+                
+            case .profileChange:
+                firebase.profileChange(displayName: "Vasant", photoURL: "")
+                break
+                
+            case .updateEmail:
+                firebase.updateEmail(email: "vasanthugar@gmail.com")
+                break
+                
+            case .sendEmailVerification:
+                firebase.sendEmailVerification()
+                break
+                
+            case .updatePassword:
+                firebase.updatePassword(password: "1234")
+                break
+                
+            case .sendPasswordReset:
+                firebase.sendPasswordReset(email: "vasant@mobifyi.com")
+                break
+                
+            case .delete:
+                firebase.delete()
+                break
+            }
             break
             
-        case .signin:
-            firebase.signin(email: "hugar.vasant@gmail.com", password: "3Embed")
+        case .google:
+            performSegue(withIdentifier: "googleSegue", sender: nil)
             break
             
-        case .profileChange:
-            firebase.profileChange(displayName: "Vasant", photoURL: "")
+        case .facebook:
+            performSegue(withIdentifier: "facebookSegue", sender: nil)
             break
             
-        case .updateEmail:
-            firebase.updateEmail(email: "vasant@mobifyi.com")
+        case .twitter:
+            performSegue(withIdentifier: "twitterSegue", sender: nil)
             break
             
-        case .sendEmailVerification:
-            firebase.sendEmailVerification()
+        case .github:
+            //performSegue(withIdentifier: "facebookSegue", sender: nil)
             break
             
-        case .updatePassword:
-            firebase.updatePassword(password: "1234")
+        case .anonymous:
+            anonymous()
             break
+
+        }
+    }
+    
+    func anonymous() {
+        
+        Auth.auth().signInAnonymously() { (user, error) in
+            // ...
+            let isAnonymous = user!.isAnonymous  // true
+            print("IsAnonymous: \(isAnonymous)")
             
-        case .sendPasswordReset:
-            firebase.sendPasswordReset(email: "vasant@mobifyi.com")
-            break
-            
-        case .delete:
-            firebase.delete()
-            break
+            let uid = user!.uid
+            print("User id: \(uid)")
         }
     }
 }
