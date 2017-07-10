@@ -16,6 +16,7 @@ enum FirebaseAuthType: Int {
     case twitter = 3
     case github = 4
     case anonymous = 5
+    case phoneNumber = 6
 }
 
 enum FirebaseActionType: Int {
@@ -87,13 +88,13 @@ class FirebaseAuthViewController: UIViewController {
 extension FirebaseAuthViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch FirebaseAuthType(rawValue: section)! {
-        case .google, .facebook, .twitter, .github, .anonymous:
+        case .google, .facebook, .twitter, .github, .anonymous, .phoneNumber:
             return 1
             
         default:
@@ -134,6 +135,12 @@ extension FirebaseAuthViewController: UITableViewDataSource {
             cell.action.text = "Anonymous"
             return cell
             
+        case .phoneNumber:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FirebaseAuthTableViewCell") as! FirebaseAuthTableViewCell
+            
+            cell.action.text = "Phone Verification"
+            return cell
+            
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "FirebaseAuthTableViewCell") as! FirebaseAuthTableViewCell
             
@@ -165,6 +172,9 @@ extension FirebaseAuthViewController: UITableViewDelegate {
             
         case .anonymous:
             return "Anonymous"
+            
+        case .phoneNumber:
+            return "Phone"
         }
     }
     
@@ -229,6 +239,10 @@ extension FirebaseAuthViewController: UITableViewDelegate {
             anonymous()
             break
 
+        case .phoneNumber:
+            phoneNumber()
+            break
+            
         }
     }
     
@@ -242,6 +256,34 @@ extension FirebaseAuthViewController: UITableViewDelegate {
             let uid = user!.uid
             print("User id: \(uid)")
         }
+    }
+    
+    func phoneNumber() {
+        
+        PhoneAuthProvider.provider().verifyPhoneNumber("+919902661890") { (verificationID, error) in
+            if let error = error {
+                print("Verify PhoneNumber Error: \(error.localizedDescription)")
+                return
+            }
+            // Sign in using the verificationID and the code sent to the user
+            // ...
+            
+            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+            let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
+            
+            let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: "315723")
+            
+            Auth.auth().signIn(with: credential) { (user, error) in
+                if let error = error {
+                    // ...
+                    return
+                }
+                // User is signed in
+                // ...
+            }
+            
+        }
+        
     }
 }
 

@@ -13,6 +13,7 @@ import Firebase
 import GoogleSignIn
 import FacebookCore
 import TwitterKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use Firebase library to configure APIs
         configureFirebase()
         configureGoogleSignin()
+        
+        // Register with APNs
+        setUpNotification(application: application)
         
         return SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -151,5 +155,59 @@ extension AppDelegate { // User Defined
         return GIDSignIn.sharedInstance().handle(url,
                                                  sourceApplication: sourceApplication,
                                                  annotation: annotation)
+    }
+    
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        // Pass device token to auth
+        Auth.auth().setAPNSToken(deviceToken, type: .sandbox)
+        
+        // Further handling of the device token if needed by the app
+        // ...
+    }
+    
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification notification: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        if Auth.auth().canHandleNotification(notification) {
+            completionHandler(UIBackgroundFetchResult.noData)
+            return
+        }
+        // This notification is not auth related, developer should handle it.
+    }
+    
+    /// Set Up Notification
+    ///
+    /// - Parameter application: Application
+    func setUpNotification(application: UIApplication) {
+        
+        // Set Up Notification
+        if #available(iOS 10, *) {
+            
+            //Notifications get posted to the function (delegate):  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void)"
+            
+            
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+                
+                guard error == nil else {
+                    //Display Error.. Handle Error.. etc..
+                    return
+                }
+                
+                if granted {
+                    //Do stuff here..
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+                else {
+                    //Handle user denying permissions..
+                }
+            }
+        }
+        else {
+            let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
     }
 }
