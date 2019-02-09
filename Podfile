@@ -4,6 +4,7 @@
 target 'Firebase Auth' do
     # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
     use_frameworks!
+    platform :ios, '10.0'
     
     # Pods for Firebase Auth
     pod 'Firebase/Auth'

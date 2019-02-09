@@ -186,11 +186,11 @@ extension FirebaseAuthViewController: UITableViewDelegate {
             
             switch FirebaseActionType(rawValue: indexPath.row)! {
             case .createUser:
-                firebase.createUser(email: "hugar.vasant@gmail.com", password: "3Embed")
+                firebase.createUser(email: "hugar.vasant@gmail.com", password: "Asdf1234")
                 break
                 
             case .signin:
-                firebase.signin(email: "hugar.vasant@gmail.com", password: "3Embed")
+                firebase.signin(email: "hugar.vasant@gmail.com", password: "Asdf1234")
                 break
                 
             case .profileChange:
@@ -206,11 +206,11 @@ extension FirebaseAuthViewController: UITableViewDelegate {
                 break
                 
             case .updatePassword:
-                firebase.updatePassword(password: "1234")
+                firebase.updatePassword(password: "Asdf12345")
                 break
                 
             case .sendPasswordReset:
-                firebase.sendPasswordReset(email: "vasant@mobifyi.com")
+                firebase.sendPasswordReset(email: "hugar.vasant@gmail.com")
                 break
                 
             case .delete:
